@@ -29,7 +29,24 @@
   <div class="contents">
     <router-view />
   </div>
-  <footer class="footer"></footer>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <router-link :to="{ name: 'List' }" class="logo" @click="category()">
+          oplinote<span>_</span>
+        </router-link>
+        <div class="contact">
+          <ul class="sns-link">
+            <li><a href="https://github.com/oplidote" class="link-box" id="github" target="_blank"></a></li>
+            <li><a href="https://www.instagram.com/wlsusn/" class="link-box" id="instagram" target="_blank"></a></li>
+            <li><a href="https://open.kakao.com/o/sxZVj0de" class="link-box" id="kakaotalk" target="_blank"></a></li>
+            <li><a href="mailto:jkr2505@naver.com" class="link-box" id="mail" target="_blank"></a></li>
+          </ul>
+        </div>
+      </div>
+      <span class="copy">© 2022 oplinote. All Rights Reserved.</span>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -98,7 +115,7 @@ export default {
         },
       });
     };
-    
+
     return {
       useRouter,
 

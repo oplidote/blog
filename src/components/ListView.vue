@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="list-view">
     <div class="list-header">
-      <h2>{{ listTitle(cate) }}</h2>
+      <h2>{{ listTitle(cate,'header') }}</h2>
       <span><em>{{ cateCount(cate) }}</em> posts</span>
     </div>
     <div class="post" v-for="item in posts" :key="item.id">
@@ -10,7 +10,7 @@
           <h2>{{ item.title }}</h2>
         </div>
         <div class="post-cate" v-if="cate == '' ? true : false ">
-          <span>{{ item.category }}</span>
+          <span>#{{ listTitle(item.category) }}</span>
         </div>
         <div class="post-cont">
           <p>{{ item.contents }}</p>
@@ -56,8 +56,9 @@ export default {
         return true;
       }
     };
-    const listTitle = (_c) => {
-      if(_c == '') {
+    const listTitle = (_c,_type) => {
+      console.log(_c);
+      if(_c == ''&&_type=='header') {
         return "Total";
       }
       else if (_c == "html") {
