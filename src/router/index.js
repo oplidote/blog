@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ListView from '@/components/ListView.vue';
-import App from '../App.vue';
 import CreatePost from '@/components/CreatePost.vue';
 
 // vue 에서 화면을 연결하는 경우 활용
@@ -9,15 +8,11 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'Home',
-            component: App,
-        },
-        {
-            path: '/list',
             name: 'List',
             component: ListView,
             props: true,
         },
+        
         {
             path: '/create',
             name: 'Create',

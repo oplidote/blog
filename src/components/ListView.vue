@@ -1,19 +1,21 @@
 <template>
   <div class="container" id="list-view">
+    <div class="list-header">
+      <h2>{{ listTitle(cate) }}</h2>
+      <span><em>{{ cateCount(cate) }}</em> posts</span>
+    </div>
     <div class="post" v-for="item in posts" :key="item.id">
-      <div class="post-tit">
-        <h2>- {{ item.title }}</h2>
-      </div>
-      <div class="post-cate">
-        <span>{{ item.category }}</span>
-      </div>
-      <div class="post-cont">
-        <p>{{ item.contents }}</p>
-      </div>
-      <div class="post-date">
-        <!-- 프롭스 데이터 가져오기 완료 -->
-        <p> {{ cate }}</p>
-        <span>{{ item.category }}</span>
+      <div class="post-box" v-if="cateSort(item.category)">
+        <div class="post-tit">
+          <h2>{{ item.title }}</h2>
+        </div>
+        <div class="post-cate" v-if="cate == '' ? true : false ">
+          <span>{{ item.category }}</span>
+        </div>
+        <div class="post-cont">
+          <p>{{ item.contents }}</p>
+        </div>
+        <div class="post-date"></div>
       </div>
     </div>
   </div>
@@ -22,14 +24,14 @@
 <script>
 import PostsList from "../assets/data.json";
 export default {
-  name: 'CateParams',
+  name: "CateParams",
   props: {
     cate: {
-      type:String,
-      default: '',
+      type: String,
+      default: "",
     },
   },
-  
+
   computed: {
     posts() {
       return PostsList.post.map((items) => {
@@ -37,7 +39,7 @@ export default {
       });
     },
   },
-  setup() {
+  setup(props) {
     // 글 내 카테고리 중복
     // const cateFN = (_CateItem) => {
     //   const cate_len = _CateItem.length;
@@ -47,7 +49,46 @@ export default {
     //   }
     //   return catelist;
     // };
+    const cateSort = (_c) => {
+      if (props.cate == _c) {
+        return true;
+      } else if (props.cate == "") {
+        return true;
+      }
+    };
+    const listTitle = (_c) => {
+      if(_c == '') {
+        return "Total";
+      }
+      else if (_c == "html") {
+        return "HTML";
+      } else if (_c == "css") {
+        return "CSS";
+      } else if (_c == "js") {
+        return "JavaScript";
+      } else if (_c == "vue") {
+        return "Vue.js";
+      } else if (_c == "etc") {
+        return "기타";
+      }
+    };
+    const cateCount = (_c) => {
+      let count = 0;
+      if (_c == "") {
+        count = PostsList.post.length;
+      } else {
+        for (let i = 0; i < PostsList.post.length; i++) {
+          if (PostsList.post[i].category == _c) {
+            count++;
+          }
+        }
+      }
+      return count;
+    };
     return {
+      cateSort,
+      listTitle,
+      cateCount,
     };
   },
 };

@@ -1,27 +1,27 @@
 <template>
   <header class="header">
-    <div @click="moveHome" class="logo">
+    <router-link :to="{ name: 'List' }" class="logo" @click="category()">
       oplinote<span>_</span>
       <p>프론트 엔드 개발자 진현우의 블로그 입니다.</p>
-    </div>
+    </router-link>
     <button class="m-all" @click="navOn" :class="{ active: isNavOn }"></button>
     <!-- <router-link :to="{ name: 'Create' }" class="create-btn"></router-link> -->
     <nav class="nav" :class="{ active: isNavOn }">
       <div class="gnb">
         <div id="html" class="menu" @click="category('html')">
-          <span>HTML</span>
+          <span class="category">HTML</span>
         </div>
         <div id="css" class="menu" @click="category('css')">
-          <span>CSS</span>
+          <span class="category">CSS</span>
         </div>
         <div id="js" class="menu" @click="category('js')">
-          <span>Javascript</span>
+          <span class="category">JavaScript</span>
         </div>
         <div id="vue" class="menu" @click="category('vue')">
-          <span>Vue.js</span>
+          <span class="category">Vue.js</span>
         </div>
         <div id="etc" class="menu" @click="category('etc')">
-          <span>etc</span>
+          <span class="category">etc</span>
         </div>
       </div>
     </nav>
@@ -36,6 +36,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import $ from "jquery";
+
 export default {
   name: "App",
   components: {},
@@ -80,9 +81,6 @@ export default {
     // 메인 이동
     const moveHome = () => {
       $(".menu").removeClass("active");
-      router.push({
-        name: "Home",
-      });
     };
     const moveCreate = () => {
       router.push({
@@ -91,15 +89,16 @@ export default {
     };
     const category = (_c) => {
       // 중복 체크 시 toggleClass 로 교체할 것
-      $('.menu').removeClass("active");
+      $(".menu").removeClass("active");
       $(`#${_c}`).addClass("active");
       router.push({
         name: "List",
-        params:{
-          cate:_c
-          }
+        params: {
+          cate: _c,
+        },
       });
     };
+    
     return {
       useRouter,
 
@@ -109,7 +108,6 @@ export default {
       isMenuOn,
       moveHome,
       moveCreate,
-
       category,
     };
   },
