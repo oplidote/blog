@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
 import $ from "jquery";
 
@@ -73,6 +73,11 @@ export default {
     },
   },
   setup() {
+    onMounted(() => {
+      router.push({
+        name: "List",
+      });
+    })
     const router = useRouter();
     // 변수
     const isNavOn = ref(false);

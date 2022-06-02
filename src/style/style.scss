@@ -521,9 +521,10 @@ body {
         }
     }
 }
-
+.contents {
+    min-height: calc(100vh - 270px);
+}
 #list-view {
-    min-height: calc(100vh - 320px);
     .list-header {
         text-align: center;
         display: flex;
