@@ -1,20 +1,20 @@
 <template>
   <div class="container" id="list-view">
     <div class="list-header">
-      <h2>{{ listTitle(cate,'header') }}</h2>
-      <span><em>{{ cateCount(cate) }}</em> posts</span>
+      <h2>{{ listTitle(cate, "header") }}</h2>
+      <span
+        ><em>{{ cateCount(cate) }}</em> posts</span
+      >
     </div>
     <div class="post" v-for="item in posts" :key="item.id">
       <div class="post-box" v-if="cateSort(item.category)">
         <div class="post-tit">
           <h2>{{ item.title }}</h2>
         </div>
-        <div class="post-cate" v-if="cate == '' ? true : false ">
+        <div class="post-cate" v-if="cate == '' ? true : false">
           <span>#{{ listTitle(item.category) }}</span>
         </div>
-        <div class="post-cont">
-          <p>{{ item.contents }}</p>
-        </div>
+        <div v-html="mdText" class="post-cont"></div>
         <div class="post-date"></div>
       </div>
     </div>
@@ -23,7 +23,11 @@
 
 <script>
 import PostsList from "../assets/data.json";
+import { marked } from "marked";
+import _ from "lodash";
+
 export default {
+  components: {},
   name: "CateParams",
   props: {
     cate: {
@@ -31,13 +35,28 @@ export default {
       default: "",
     },
   },
-
+  async created() {},
   computed: {
     posts() {
       return PostsList.post.map((items) => {
         return items;
       });
     },
+    mdText(props) {
+      let text = marked(require(`raw-loader!../posts/html1.md`).default);
+      if (props.cate == "") {
+        return;
+      }
+      else if (props.cate == "css") {
+        text = marked(require(`raw-loader!../posts/css2.md`).default);
+      }
+      return text;
+    },
+  },
+  methods: {
+    update: _.debounce(function (e) {
+      this.input = e.target.value;
+    }, 300),
   },
   setup(props) {
     // 글 내 카테고리 중복
@@ -56,12 +75,10 @@ export default {
         return true;
       }
     };
-    const listTitle = (_c,_type) => {
-      console.log(_c);
-      if(_c == ''&&_type=='header') {
+    const listTitle = (_c, _type) => {
+      if (_c == "" && _type == "header") {
         return "Total";
-      }
-      else if (_c == "html") {
+      } else if (_c == "html") {
         return "HTML";
       } else if (_c == "css") {
         return "CSS";
