@@ -6,7 +6,7 @@
         ><em>{{ cateCount(cate) }}</em> posts</span
       >
     </div>
-    <div class="post" v-for="item in posts" :key="item.id">
+    <div class="post" v-for="(item,index) in posts" :key="item.id">
       <div class="post-box" v-if="cateSort(item.category)">
         <div class="post-tit">
           <h2>{{ item.title }}</h2>
@@ -14,7 +14,7 @@
         <div class="post-cate" v-if="cate == '' ? true : false">
           <span>#{{ listTitle(item.category) }}</span>
         </div>
-        <div v-html="mdText" class="post-cont"></div>
+        <div v-html="markText(index + 1)" class="post-cont"></div>
         <div class="post-date"></div>
       </div>
     </div>
@@ -42,16 +42,6 @@ export default {
         return items;
       });
     },
-    mdText(props) {
-      let text = marked(require(`raw-loader!../posts/html1.md`).default);
-      if (props.cate == "") {
-        return;
-      }
-      else if (props.cate == "css") {
-        text = marked(require(`raw-loader!../posts/css2.md`).default);
-      }
-      return text;
-    },
   },
   methods: {
     update: _.debounce(function (e) {
@@ -59,15 +49,13 @@ export default {
     }, 300),
   },
   setup(props) {
-    // 글 내 카테고리 중복
-    // const cateFN = (_CateItem) => {
-    //   const cate_len = _CateItem.length;
-    //   let catelist = "";
-    //   for (let i = 0; i < cate_len; i++) {
-    //     catelist += `${_CateItem[i]} `;
-    //   }
-    //   return catelist;
-    // };
+    const markText = (_index) => {
+      if(_index == '') {
+        return;
+      }
+      let text = marked(require(`raw-loader!../posts/post${_index}.md`).default.replace(/\n|#|__|```|~~/g, ""));
+      return text;
+    }
     const cateSort = (_c) => {
       if (props.cate == _c) {
         return true;
@@ -107,6 +95,7 @@ export default {
       cateSort,
       listTitle,
       cateCount,
+      markText,
     };
   },
 };

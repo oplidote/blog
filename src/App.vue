@@ -65,7 +65,7 @@ export default {
     headerScroll: function () {
       const winY = window.scrollY;
       let $header = $(".header");
-      if (winY > 50) {
+      if (winY > 30) {
         $header.addClass("scroll");
       } else {
         $header.removeClass("scroll");

@@ -590,8 +590,16 @@ body {
         }
         
         .post-cont {
-            font-size: 1.5rem;
-            color: #888;
+            max-height: 48px;
+            vertical-align:top;
+            text-overflow: ellipsis;
+            word-break:break-all;
+            -webkit-box-orient:vertical;
+            overflow: hidden;
+            >* {
+                font-size: 1.5rem !important;
+                color: #888;
+            }
         }
     }
 }
