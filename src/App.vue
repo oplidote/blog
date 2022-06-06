@@ -8,21 +8,21 @@
     <!-- <router-link :to="{ name: 'Create' }" class="create-btn"></router-link> -->
     <nav class="nav" :class="{ active: isNavOn }">
       <div class="gnb">
-        <div id="html" class="menu" @click="category('html')">
+        <router-link :to="{ name:'Html', params:{cate:'html'} }" id="html" class="menu" @click="category('html')">
           <span class="category">HTML</span>
-        </div>
-        <div id="css" class="menu" @click="category('css')">
+        </router-link>
+        <router-link :to="{ name:'Css', params:{cate:'css'} }" id="css" class="menu" @click="category('css')">
           <span class="category">CSS</span>
-        </div>
-        <div id="js" class="menu" @click="category('js')">
+        </router-link>
+        <router-link :to="{ name:'Js', params:{cate:'js'} }" id="js" class="menu" @click="category('js')">
           <span class="category">JavaScript</span>
-        </div>
-        <div id="vue" class="menu" @click="category('vue')">
+        </router-link>
+        <router-link :to="{ name:'Vue', params:{cate:'vue'} }" id="vue" class="menu" @click="category('vue')">
           <span class="category">Vue.js</span>
-        </div>
-        <div id="etc" class="menu" @click="category('etc')">
+        </router-link>
+        <router-link :to="{ name:'Etc', params:{cate:'etc'} }" id="etc" class="menu" @click="category('etc')">
           <span class="category">etc</span>
-        </div>
+        </router-link>
       </div>
     </nav>
   </header>
@@ -143,12 +143,6 @@ export default {
       // 중복 체크 시 toggleClass 로 교체할 것
       $(".menu").removeClass("active");
       $(`#${_c}`).addClass("active");
-      router.push({
-        name: "List",
-        params: {
-          cate: _c,
-        },
-      });
     };
 
     return {

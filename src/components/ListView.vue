@@ -8,14 +8,20 @@
     </div>
     <div class="list-wrap">
       <div class="post" v-for="(item, index) in posts" :key="item.id">
-        <div class="post-box" v-show="cateSort(item.category)">
+        <div
+          class="post-box"
+          v-show="cateSort(item.category)">
+        <div class="click-area"
+          @click="movePost(item.id,cate)"
+        ></div>
+          <div class="post-cate" v-if="cate == '' ? true : false">
+            <span>{{ listTitle(item.category) }}</span>
+          </div>
           <div class="post-date">{{ postDate(item.date) }}</div>
           <div class="post-tit">
             <h2>{{ item.title }}</h2>
           </div>
-          <div class="post-cate" v-if="cate == '' ? true : false">
-            <span>#{{ listTitle(item.category) }}</span>
-          </div>
+
           <div v-html="markText(index + 1)" class="post-cont"></div>
         </div>
       </div>
@@ -24,23 +30,17 @@
 </template>
 
 <script>
-import PostsList from "../assets/data.json";
+import PostsList from "@/assets/data.json";
 import _ from "lodash";
+import { useRouter } from "vue-router";
+
+// markdown 파일을 위한 라이브러리
 import { marked } from "marked";
 import prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
-import "prismjs/components/prism-bash";
-import "prismjs/components/prism-javascript";
-import "prismjs/components/prism-json";
-import "prismjs/components/prism-liquid";
-import "prismjs/components/prism-markdown";
-import "prismjs/components/prism-markup-templating";
-import "prismjs/components/prism-php";
-import "prismjs/components/prism-scss";
 
 export default {
   components: {},
-  name: "CateParams",
   props: {
     cate: {
       type: String,
@@ -61,15 +61,9 @@ export default {
     }, 300),
   },
   setup(props) {
-    const renderer = new marked.Renderer();
-    const linkRenderer = renderer.link;
-    renderer.link = (href, title, text) => {
-      const html = linkRenderer.call(renderer, href, title, text);
-      return html.replace(/^<a /, '<a target="_blank" rel="nofollow" ');
-    };
+    const router = useRouter();
     // marked.js 옵션
     marked.setOptions({
-      renderer: renderer,
       // prism.js 속성 부여
       highlight: (code, lang) => {
         if (prism.languages[lang]) {
@@ -80,37 +74,40 @@ export default {
       },
     });
     const postDate = (_createDate) => {
-      
       let date1 = new Date(); // 현재 일자
       let date2 = new Date(_createDate); // 파일 생성일자
-
       // 일자의 격차 구하기
       const diffDate = date1.getTime() - date2.getTime();
-
       // 분 단위로 변경
       let diffMin = parseInt(diffDate / (1000 * 60));
-      
+      let diffDay = parseInt(diffMin / 1440);
+      let diffWeek = parseInt(diffDay / 7);
+      let diffMon = parseInt(diffDay / 30);
+      let diffYear = parseInt(diffDay / 365);
+      // 게시일자 별 멘트
       if (diffMin < 1) {
         return "방금 전";
-      } 
-      // 1 시간 이내
-      else if (diffMin < 60) {
+      } else if (diffMin < 60) {
+        // 1 시간 이내
         return diffMin + "분 전";
-      } 
-      // 1시간 ~ 24시간 이내
-      else if (diffMin > 60 && diffMin < 60 * 24) {
+      } else if (diffMin > 60 && diffMin < 1440) {
+        // 1시간 ~ 24시간 이내 60m ~ 1440m
         return parseInt(diffMin / 60) + "시간 전";
-      }
-      // 하루 전 ~ 이틀 전
-      else if (60 * 24 < diffMin) {
-        if (120 * 24 < diffMin) return "이틀 전";
+      } else if (1 <= diffDay && diffDay < 3) {
+        // 하루 전 ~ 이틀 전
+        if (2 <= diffDay) return "이틀 전";
         else return "하루 전";
+      } else if (3 <= diffDay && 7 > diffDay) {
+        // 3일 전 ~ 1주일 이내
+        return diffDay + "일 전";
+      } else if (1 <= diffWeek && 4 > diffWeek) {
+        // n주 전
+        return diffWeek + "주 전";
+      } else if (1 <= diffMon && 12 > diffMon) {
+        // 1년 이내
+        return diffMon + "개월 전";
       }
-      // 이 후
-      else if (180 * 24 < diffMin) {
-        return parseInt((diffMin / 60) * 24) + "일 전";
-      }
-      return diffMin;
+      return diffYear + "년 전";
     };
     const markText = (_index) => {
       return marked.parse(
@@ -152,6 +149,15 @@ export default {
       }
       return count;
     };
+    const movePost = (_id,_c) => {
+      router.push({
+        name: "Post",
+        params: {
+          id: _id,
+          cate: _c,
+        },
+      });
+    };
     return {
       cateSort,
       listTitle,
@@ -159,6 +165,7 @@ export default {
       markText,
       prism,
       postDate,
+      movePost,
     };
   },
 };

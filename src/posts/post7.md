@@ -18,10 +18,8 @@ const postDate = (_createDate) => {
       
       let date1 = new Date(); // 현재 일자
       let date2 = new Date(_createDate); // 파일 생성일자
-
       // 일자의 격차 구하기
       const diffDate = date1.getTime() - date2.getTime();
-
       // 분 단위로 변경
       let diffMin = parseInt(diffDate / (1000 * 60));
 
