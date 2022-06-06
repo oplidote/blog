@@ -73,7 +73,6 @@ export default {
       // prism.js 속성 부여
       highlight: (code, lang) => {
         if (prism.languages[lang]) {
-          console.log(prism.languages[lang]);
           return prism.highlight(code, prism.languages[lang], lang);
         } else {
           return code;

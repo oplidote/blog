@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <router-link :to="{ name: 'List' }" class="logo" @click="category()">
-      oplinote<span>_</span>
+      plinote<span>_</span>
       <p>프론트 엔드 개발자 진현우의 블로그 입니다.</p>
     </router-link>
     <button class="m-all" @click="navOn" :class="{ active: isNavOn }"></button>
@@ -37,10 +37,38 @@
         </router-link>
         <div class="contact">
           <ul class="sns-link">
-            <li><a href="https://github.com/oplidote" class="link-box" id="github" target="_blank"></a></li>
-            <li><a href="https://www.instagram.com/wlsusn/" class="link-box" id="instagram" target="_blank"></a></li>
-            <li><a href="https://open.kakao.com/o/sxZVj0de" class="link-box" id="kakaotalk" target="_blank"></a></li>
-            <li><a href="mailto:jkr2505@naver.com" class="link-box" id="mail" target="_blank"></a></li>
+            <li>
+              <a
+                href="https://github.com/oplidote"
+                class="link-box"
+                id="github"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://www.instagram.com/wlsusn/"
+                class="link-box"
+                id="instagram"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="https://open.kakao.com/o/sxZVj0de"
+                class="link-box"
+                id="kakaotalk"
+                target="_blank"
+              ></a>
+            </li>
+            <li>
+              <a
+                href="mailto:jkr2505@naver.com"
+                class="link-box"
+                id="mail"
+                target="_blank"
+              ></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -77,7 +105,7 @@ export default {
       router.push({
         name: "List",
       });
-    })
+    });
     const router = useRouter();
     // 변수
     const isNavOn = ref(false);
@@ -95,7 +123,6 @@ export default {
     const menuOn = () => {
       if (isMenuOn.value == false) {
         isMenuOn.value = true;
-        console.log("d");
       } else if (isMenuOn.value == true) {
         isMenuOn.value = false;
       }
@@ -110,6 +137,9 @@ export default {
       });
     };
     const category = (_c) => {
+      if(_c == undefined){
+        window.scroll({ top: 0 });
+      }
       // 중복 체크 시 toggleClass 로 교체할 것
       $(".menu").removeClass("active");
       $(`#${_c}`).addClass("active");
