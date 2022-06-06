@@ -49,7 +49,7 @@ export default {
   },
 },
 ```
-- 이 후 템플릿에서 사용할 post 배열에 담긴 data를 아래처럼 작성한다
+- 이 후 템플릿에서 사용할 post 배열에 담긴 data를 아래처럼 작성한다.
 - 선택한 게시물에 대한 내용이 출력된다.
 ``` html
 <h1 class="post-tit">{{ post.title }}</h1>
@@ -66,8 +66,10 @@ export default {
 ```
 history.back() 함수를 사용하면 바로 전 url 로 돌아간다.
 하지만 list 의 url 은 카테고리를 선택하더라도 변함 없이  '/' 이다
+
 그렇기 때문에 예를 들어
 vue 카테고리를 선택 후 특정 게시물로 진입 후 뒤로가기 할 시 vue 카테고리를 다시 보여주는 게 아닌 total 로 돌아간다.
+
 ### 해결시도
 - 모든 카테고리 버튼을 div >  router-link 로 수정했다.
 - 이후 router/index.js 에서 카테고리별 url을 다르게 수정했다.

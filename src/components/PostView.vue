@@ -3,14 +3,40 @@
     <div class="post-wrap">
       <div class="post-control"></div>
       <div class="post-header">
-        <h1 class="post-tit">{{ post.title }}</h1>
+        <h1 class="post-tit">
+          <span>{{ post.title }}</span>
+        </h1>
+        <div class="post-cate">
+          <span>{{ cateText(post.category) }}</span>
+        </div>
+        <span class="post-date">{{ postDate(post.date) }}</span>
       </div>
-      <div class="post-cate">
-        <span>{{ cateText(post.category) }}</span>
-      </div>
-      <span class="post-date">{{ postDate(post.date) }}</span>
       <div class="post-contents">
         <div v-html="markText(post.id)" class="post-txt"></div>
+      </div>
+      <div class="post-footer">
+        <div class="post-author">
+          <span class="author-name"><strong>진현우</strong>hyunwoo Jin</span>
+          <div class="author-info">
+            <p>주니어 프론트엔드 개발자 진현우입니다.</p>
+            <p>A junior front-end developer.</p>
+          </div>
+        </div>
+        <!-- <div class="author-contact">
+          <b>contact</b>
+          <p>
+            <span>kakao : </span>
+            <a href="https://open.kakao.com/o/sxZVj0de"
+              target="_blank"
+              >https://open.kakao.com/o/sxZVj0de</a>
+          </p>
+          <p>
+            <span>github : </span>
+            <a href="https://github.com/oplidote"
+              target="_blank"
+              >https://github.com/oplidote</a>
+          </p>
+        </div> -->
       </div>
     </div>
   </div>
@@ -110,7 +136,7 @@ export default {
     return {
       postDate,
       cateText,
-      markText
+      markText,
     };
   },
 };

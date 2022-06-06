@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <router-link :to="{ name: 'List' }" class="logo" @click="category()">
+    <router-link :to="{ name: 'List' }" class="logo" @click="goTop()">
       plinote<span>_</span>
       <p>프론트 엔드 개발자 진현우의 블로그 입니다.</p>
     </router-link>
@@ -8,19 +8,19 @@
     <!-- <router-link :to="{ name: 'Create' }" class="create-btn"></router-link> -->
     <nav class="nav" :class="{ active: isNavOn }">
       <div class="gnb">
-        <router-link :to="{ name:'Html', params:{cate:'html'} }" id="html" class="menu" @click="category('html')">
+        <router-link :to="{ name:'Html', params:{cate:'html'} }" id="html" class="menu">
           <span class="category">HTML</span>
         </router-link>
-        <router-link :to="{ name:'Css', params:{cate:'css'} }" id="css" class="menu" @click="category('css')">
+        <router-link :to="{ name:'Css', params:{cate:'css'} }" id="css" class="menu">
           <span class="category">CSS</span>
         </router-link>
-        <router-link :to="{ name:'Js', params:{cate:'js'} }" id="js" class="menu" @click="category('js')">
+        <router-link :to="{ name:'Js', params:{cate:'js'} }" id="js" class="menu">
           <span class="category">JavaScript</span>
         </router-link>
-        <router-link :to="{ name:'Vue', params:{cate:'vue'} }" id="vue" class="menu" @click="category('vue')">
+        <router-link :to="{ name:'Vue', params:{cate:'vue'} }" id="vue" class="menu">
           <span class="category">Vue.js</span>
         </router-link>
-        <router-link :to="{ name:'Etc', params:{cate:'etc'} }" id="etc" class="menu" @click="category('etc')">
+        <router-link :to="{ name:'Etc', params:{cate:'etc'} }" id="etc" class="menu">
           <span class="category">etc</span>
         </router-link>
       </div>
@@ -136,25 +136,19 @@ export default {
         name: "Create",
       });
     };
-    const category = (_c) => {
-      if(_c == undefined){
+    const goTop = () => {
         window.scroll({ top: 0 });
-      }
-      // 중복 체크 시 toggleClass 로 교체할 것
-      $(".menu").removeClass("active");
-      $(`#${_c}`).addClass("active");
     };
 
     return {
       useRouter,
-
       navOn,
       isNavOn,
       menuOn,
       isMenuOn,
       moveHome,
       moveCreate,
-      category,
+      goTop,
     };
   },
 };
