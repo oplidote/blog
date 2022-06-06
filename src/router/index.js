@@ -49,7 +49,7 @@ const router = createRouter({
             component: CreatePost,
         },
         {
-            path: '/post',
+            path: '/oplinote/post',
             name: 'Post',
             component: PostView,
             props: true,

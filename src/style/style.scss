@@ -19,6 +19,18 @@
 
 }
 
+@keyframes opa {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 // 변수
 $header-h:150px;
 
@@ -220,6 +232,8 @@ body {
             height: 30px;
             background: url('../assets/logo.png') no-repeat center;
             background-size: cover;
+            transition: .3s;
+
         }
     }
 
@@ -748,6 +762,7 @@ body {
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                text-overflow: ellipsis;
 
                 >* {
                     font-size: 1.5rem !important;
@@ -996,9 +1011,10 @@ body {
                     .category {
                         padding-right: 10px;
                         padding-left: 10px;
+
                         &::before {
                             opacity: 0 !important;
-                            left: 10px;
+                            left: 9px;
                         }
                     }
                 }
@@ -1009,6 +1025,7 @@ body {
             .nav {
                 position: absolute;
                 right: 10px;
+
                 .gnb {
                     flex-direction: row;
 
@@ -1019,9 +1036,10 @@ body {
 
                         .category {
                             padding-left: 26px;
+                            animation: opa .6s;
 
                             &::before {
-                                transition: .3s .3s;
+                                transition: opacity .3s .3s;
                                 opacity: 1 !important;
                                 width: 18px;
                                 height: 18px;
@@ -1032,8 +1050,14 @@ body {
             }
 
             .logo {
-                left: 10px;
-                transform: translateY(-50%);
+                font-size: 2rem;
+                padding-left: 22px;
+                left: 20%;
+
+                &::before {
+                    width: 20px;
+                    height: 20px;
+                }
             }
         }
     }
@@ -1052,8 +1076,8 @@ body {
                 .post-box {
                     margin-top: 60px;
                     border-radius: 40px;
-                    .click-area {
-                    }
+
+                    .click-area {}
 
                     .post-tit {
                         text-align: center;
@@ -1070,6 +1094,7 @@ body {
         }
     }
 }
+
 @media all and (max-width : 360px) {
     html {
         font-size: 7px;
