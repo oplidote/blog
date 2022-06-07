@@ -64,14 +64,8 @@ export default {
     const router = useRouter();
     // marked.js 옵션
     marked.setOptions({
-      // prism.js 속성 부여
-      highlight: (code, lang) => {
-        if (prism.languages[lang]) {
-          return prism.highlight(code, prism.languages[lang], lang);
-        } else {
-          return code;
-        }
-      },
+      gfm: true,
+      breaks: false,  // 줄바꿈 한번을 <br> 로 취급할 지
     });
     const postDate = (_createDate) => {
       let date1 = new Date(); // 현재 일자
@@ -110,9 +104,8 @@ export default {
       return diffYear + "년 전";
     };
     const markText = (_index) => {
-      return marked.parse(
-        require(`raw-loader!../posts/post${_index}.md`).default
-      );
+      const text = require(`raw-loader!../posts/post${_index}.md`).default.replace(/</g, "&lt;").replace(/>/g,"&gt;").replace(/#/g,"");
+      return text;
     };
     const cateSort = (_c) => {
       if (props.cate == _c) {

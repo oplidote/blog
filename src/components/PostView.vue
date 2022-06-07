@@ -132,6 +132,8 @@ export default {
           return code;
         }
       },
+      gfm: true,
+      breaks: true,
     });
     return {
       postDate,
