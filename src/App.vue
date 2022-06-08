@@ -1,5 +1,5 @@
 <template>
-  <header class="header" @mouseleave="isSearchOn = false">
+  <header class="header">
     <div class="container">
       <router-link :to="{ name: 'List' }" class="logo" @click="goTop()">
         plinote<span>_</span>
@@ -9,7 +9,7 @@
         <button class="mode" @click="modeChange"></button>
         <div class="search-form" :class="{ active: isSearchOn }">
           <button class="search" @mouseenter="isSearchOn = true"></button>
-          <input class="form-control" placeholder="검색어를 입력하세요" />
+          <input class="form-control" placeholder="준비 중입니다." @mouseleave="isSearchOn = false"/>
         </div>
         <button class="cate-btn" :class="{ active: isBtnOn }" @click="navOn"></button>
       </div>

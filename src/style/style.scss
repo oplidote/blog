@@ -62,6 +62,7 @@ $html-fs : 10px;
 html {
     font-size: $html-fs;
     overflow-x: hidden;
+    background-color: #202025;
 }
 
 
@@ -79,7 +80,7 @@ body {
     letter-spacing: -0.5;
     color: #ddd;
     background-color: #202025;
-    transition: .3s;
+    transition: background-color .3s;
 }
 
 /* 공통요소 */
@@ -127,7 +128,8 @@ body {
     ol {
         position: relative;
         display: block;
-        padding: 5%;
+        padding: 5% 5%;
+        margin: 2% 0;
 
         li {
             position: relative;
@@ -137,7 +139,7 @@ body {
             &::before {
                 content: '';
                 position: absolute;
-                top: 18px;
+                top: calc(#{$html-fs} * 1.8);
                 left: -10px;
                 display: block;
                 width: 4px;
@@ -229,7 +231,7 @@ body {
         position: absolute;
         display: block;
         left: 50%;
-        top: 40%;
+        top: 50%;
         padding-left: 32px;
         transform: translate(-50%, -50%);
         text-align: center;
@@ -262,6 +264,7 @@ body {
         font-size: 1.2rem;
         font-weight: normal;
         white-space: nowrap;
+        color: #999;
         transition: .3s .3s;
     }
 
@@ -282,6 +285,7 @@ body {
             height: 25px;
             background:url('../images/moon.png')no-repeat center;
             background-size: cover;
+            cursor: pointer;
             border: 0;
             background-color: transparent;
         }
@@ -304,7 +308,7 @@ body {
                 position: absolute;
                 top: 50%;
                 transform: translateY(-50%);
-                border-radius: 10px;
+                border-radius: 20px;
                 background-color: #333344;
                 border: 0;
                 caret-color: #aab;
@@ -312,7 +316,7 @@ body {
                 width: 0;
                 font-size: 1.5rem;
                 padding: 0 15px;
-                right: -2px;
+                right: -5px;
                 visibility: hidden;
                 opacity: 0;
                 height: 35px;
@@ -428,23 +432,23 @@ body {
                     color: #fff;
 
                     &#html span::before {
-                        background: url('../images/html-5_color.png');
-                        background-size: cover;
+                        background: url('../images/html-5_color.png') !important;
+                        background-size: cover !important;
                     }
 
                     &#css span::before {
-                        background: url('../images/css-3_color.png');
-                        background-size: cover;
+                        background: url('../images/css-3_color.png') !important;
+                        background-size: cover !important;
                     }
 
                     &#js span::before {
-                        background: url('../images/js_color.png');
-                        background-size: cover;
+                        background: url('../images/js_color.png') !important;
+                        background-size: cover !important;
                     }
 
                     &#vue span::before {
-                        background: url('../images/vue_color.png');
-                        background-size: cover;
+                        background: url('../images/vue_color.png') !important;
+                        background-size: cover !important;
                     }
                 }
 
@@ -487,7 +491,6 @@ body {
         height: 80px;
 
         .logo {
-            top: 50%;
             left: 0;
             transform: translate(0, -50%);
             font-size: 3rem;
@@ -855,7 +858,7 @@ body {
                 border-radius: 20px;
                 margin-top: 40px;
                 padding: 40px;
-                // box-shadow: 3px 3px 10px 0px #000;
+                transition: .3s;
             }
 
             .click-area {
@@ -958,8 +961,9 @@ body {
         }
 
         .post-contents {
-            border-top: 2px solid rgba(255, 255, 255, .25);
-            border-bottom: 2px solid rgba(255, 255, 255, .25);
+            border-top: 2px solid rgba(255, 255, 255, .05);
+            border-bottom: 2px solid rgba(255, 255, 255, .05);
+            
             padding: 100px 0;
             margin: 0 20px;
 
@@ -976,7 +980,6 @@ body {
             justify-content: space-between;
             align-items: center;
             padding: 5% 5%;
-
             .post-author {
                 color: #999;
                 font-size: 1.3rem;
@@ -1022,7 +1025,9 @@ body {
     html {
         font-size: $html-fs;
     }
-
+    li::before {
+        top: calc(#{$html-fs} * 1.8) !important;
+    }
     .header {
         .user-area {
             .search-form.active {
@@ -1035,36 +1040,12 @@ body {
 }
 
 @media all and (max-width : 768px) {
-    // .m-all {
-    //     display: block !important;
-    // }
-
-    // .nav {
-    //     position: absolute;
-    //     width: auto;
-    //     visibility: hidden;
-    //     background-color: #000;
-    //     right: 30px;
-    //     margin-top: 10px;
-
-    //     &.active {
-    //         visibility: visible !important;
-
-    //         .gnb {
-    //             opacity: 1;
-    //         }
-    //     }
-
-    //     .gnb {
-    //         display: block;
-    //         transition: .3s;
-    //         opacity: 0;
-    //     }
-    // }
     $html-fs: 8px;
-
     html {
         font-size: $html-fs;
+    }
+    li::before {
+        top: calc(#{$html-fs} * 1.8) !important;
     }
 
     $header-h:130px;
@@ -1134,9 +1115,11 @@ body {
         }
 
         .logo {
-            top: 40%;
             left: 0;
             transform: translate(0, -50%);
+            p {
+                display: none;
+            }
         }
 
         .nav {
@@ -1167,8 +1150,6 @@ body {
 }
 
 @media all and (max-width : 420px) {
-    $html-fs: 8px;
-
     .container {
         padding: 5%;
     }
@@ -1261,22 +1242,22 @@ body {
                     width: 20px;
                     height: 20px;
                     background: url('../images/all.png')no-repeat center;
-                    background-size: cover;
+                    background-size: cover !important;
                 }
 
                 &.html::before {
                     background: url('../images/html-5_color.png')no-repeat center;
-                    background-size: cover;
+                    background-size: cover !important;
                 }
 
                 &.css::before {
                     background: url('../images/css-3_color.png')no-repeat center;
-                    background-size: cover;
+                    background-size: cover !important;
                 }
 
                 &.js::before {
                     background: url('../images/js_color.png')no-repeat center;
-                    background-size: cover;
+                    background-size: cover !important;
                 }
 
                 &.vue::before {
@@ -1285,7 +1266,7 @@ body {
                 }
 
                 &.etc::before {
-                    background: url('../images/dots_on.png')no-repeat center;
+                    background: url('../images/dots.png')no-repeat center;
                     background-size: cover;
                 }
             }
@@ -1343,11 +1324,13 @@ body {
 
 @media all and (max-width : 360px) {
     $html-fs: 7px;
-
     html {
         font-size: $html-fs;
     }
 
+    li::before {
+        top: calc(#{$html-fs} * 1.8) !important;
+    }
     .header {
         .user-area {
             .search-form.active {
@@ -1358,21 +1341,84 @@ body {
         }
     }
 }
-// 라이트 모드 
+// 라이트 모드
 body.light {
     background-color:  #fff!important;
-    color: #000;
-    .header,.scroll nav,
+    .author-info,.post-txt {
+        color: #555 !important;
+    }
+    .header,.scroll nav,.post-wrap,
     .post-box,
     .footer {
         background-color: #fff !important;
     }
-
-    .logo {
+    &, .author-name,.logo,.post-tit,h1,h2,h3,.category:hover {
         color: #000 !important;
+    }
+    .form-control {
+        background-color: #88a !important;
+        caret-color: #fff !important;
+        color: #fff !important;
+        &::placeholder {
+            color: #fff !important;
+        }
+    }
+    .post-txt ul li::before, .post-txt ol li::before {
+        background-color: #000 !important;
+    }
+    .post-txt ul, .post-txt ol {
+        border-radius: 30px;
+        background-color: #f4f4f4;
+    }.post-txt blockquote {
+        background-color: #f4f4f4 !important;
+    }
+    .post-txt p > code {
+        background-color: #8888a9 !important;
+    }
+    .header {
+        .nav {
+            .gnb {
+                .menu {
+                    &#html span::before {
+                        background: url('../images/html-5-light.png') no-repeat center;
+                        background-size: cover !important;
+                    }
+                    &#css span::before {
+                        background: url('../images/css-3-light.png') no-repeat center;
+                        background-size: cover !important;
+                    }
+                    &#js span::before {
+                        background: url('../images/js-light.png') no-repeat center;
+                        background-size: cover !important;
+                    }
+                    &#vue span::before {
+                        background: url('../images/vue-light.png') no-repeat center;
+                        background-size: cover !important;
+                    }
+                    &#etc span::before {
+                        background: url('../images/dots-light.png') no-repeat center;
+                        background-size: cover !important;
+                    }
+                    &.router-link-active#etc span::before {
+                        background: url('../images/dots.png') no-repeat center;
+                        background-size: cover !important;
+                    }
+                    &.router-link-active:hover {
+                        .category{
+                            color: #fff !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .logo {
         &::before {
             background:url('../assets/logo-light.png') no-repeat center !important;
             background-size: cover !important;
+        }
+        p {
+            color: #aaa;
         }
     }
     .search {
@@ -1387,7 +1433,7 @@ body.light {
         background:url('../images/back-light.png') no-repeat center !important;
         background-size: cover !important;
     }
-    .post-box {
+    .post-box,.footer {
         border-top: 1px solid #333 !important;
         border-radius: 0 !important;
     }
@@ -1395,10 +1441,27 @@ body.light {
         color: #fff;
         background-color: #8888aa;
     }
-    .post-tit {
-        color: #000 !important;
+    .post-contents {
+        border-color: rgba(0, 0, 0, .25) !important;
     }
+    
     .footer {
-        border-top: 1px solid #333;
+        #github {
+            background:url('../images/github-light.png')no-repeat center !important;
+            background-size: cover !important;
+        }
+        #instagram {
+            background:url('../images/instagram-light.png')no-repeat center !important;
+            background-size: cover !important;
+        }
+        #kakaotalk {
+            background:url('../images/kakao-light.png')no-repeat center !important;
+            background-size: cover !important;
+        }
+        #mail {
+            background:url('../images/mail-light.png')no-repeat center !important;
+            background-size: cover !important;
+        }
     }
+    
 }
