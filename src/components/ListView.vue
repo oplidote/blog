@@ -1,7 +1,7 @@
 <template>
   <div class="container" id="list-view">
     <div class="list-header">
-      <h2>{{ listTitle(cate, "header") }}</h2>
+      <h2 :class="`${cate}`">{{ listTitle(cate, "header") }}</h2>
       <span
         ><em>{{ cateCount(cate) }}</em> posts</span
       >
@@ -127,6 +127,8 @@ export default {
         return "Vue.js";
       } else if (_c == "etc") {
         return "기타";
+      } else {
+        return _c;
       }
     };
     const cateCount = (_c) => {

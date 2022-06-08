@@ -50,9 +50,15 @@
         },
         {
             "id":9,
-            "category" : "etc",
+            "category" : "vue",
             "title": "Vue.js 블로그 제작기 (4)",
             "date":"2022-06-07T14:24:00+09:00"
+        },
+        {
+            "id":10,
+            "category" : "DB",
+            "title": "[mongoDB]DB 맛보기 - 공부기록",
+            "date":"2022-06-07T12:01:00+09:00"
         }
     ]
 }

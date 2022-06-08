@@ -107,6 +107,8 @@ export default {
         return "Vue.js";
       } else if (_c == "etc") {
         return "기타";
+      } else {
+        return _c;
       }
     };
     // 게시물 내용

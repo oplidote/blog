@@ -1,26 +1,56 @@
 <template>
-  <header class="header">
-    <router-link :to="{ name: 'List' }" class="logo" @click="goTop()">
-      plinote<span>_</span>
-      <p>프론트 엔드 개발자 진현우의 블로그 입니다.</p>
-    </router-link>
-    <button class="m-all" @click="navOn" :class="{ active: isNavOn }"></button>
+  <header class="header" @mouseleave="isSearchOn = false">
+    <div class="container">
+      <router-link :to="{ name: 'List' }" class="logo" @click="goTop()">
+        plinote<span>_</span>
+        <p>프론트 엔드 개발자 진현우의 블로그 입니다.</p>
+      </router-link>
+      <div class="user-area">
+        <button class="mode" @click="modeChange"></button>
+        <div class="search-form" :class="{ active: isSearchOn }">
+          <button class="search" @mouseenter="isSearchOn = true"></button>
+          <input class="form-control" placeholder="검색어를 입력하세요" />
+        </div>
+        <button class="cate-btn" :class="{ active: isBtnOn }" @click="navOn"></button>
+      </div>
+    </div>
+
     <!-- <router-link :to="{ name: 'Create' }" class="create-btn"></router-link> -->
     <nav class="nav" :class="{ active: isNavOn }">
       <div class="gnb">
-        <router-link :to="{ name:'Html', params:{cate:'html'} }" id="html" class="menu">
+        <router-link
+          :to="{ name: 'Html', params: { cate: 'html' } }"
+          id="html"
+          class="menu"
+        >
           <span class="category">HTML</span>
         </router-link>
-        <router-link :to="{ name:'Css', params:{cate:'css'} }" id="css" class="menu">
+        <router-link
+          :to="{ name: 'Css', params: { cate: 'css' } }"
+          id="css"
+          class="menu"
+        >
           <span class="category">CSS</span>
         </router-link>
-        <router-link :to="{ name:'Js', params:{cate:'js'} }" id="js" class="menu">
+        <router-link
+          :to="{ name: 'Js', params: { cate: 'js' } }"
+          id="js"
+          class="menu"
+        >
           <span class="category">JavaScript</span>
         </router-link>
-        <router-link :to="{ name:'Vue', params:{cate:'vue'} }" id="vue" class="menu">
+        <router-link
+          :to="{ name: 'Vue', params: { cate: 'vue' } }"
+          id="vue"
+          class="menu"
+        >
           <span class="category">Vue.js</span>
         </router-link>
-        <router-link :to="{ name:'Etc', params:{cate:'etc'} }" id="etc" class="menu">
+        <router-link
+          :to="{ name: 'Etc', params: { cate: 'etc' } }"
+          id="etc"
+          class="menu"
+        >
           <span class="category">etc</span>
         </router-link>
       </div>
@@ -108,16 +138,24 @@ export default {
     });
     const router = useRouter();
     // 변수
-    const isNavOn = ref(false);
     const isMenuOn = ref(false);
-
+    const isNavOn = ref(false);
+    const isBtnOn = ref(false);
+    const isSearchOn = ref(false);
     // all button
     const navOn = () => {
       if (isNavOn.value == false) {
         isNavOn.value = true;
+        isBtnOn.value = true;
       } else if (isNavOn.value == true) {
         isNavOn.value = false;
+        isBtnOn.value = false;
       }
+      isSearchOn.value = false;
+    }
+    const DeleteActive = () => {
+      isNavOn.value = false;
+      isSearchOn.value = false;
     };
     // all menu
     const menuOn = () => {
@@ -127,6 +165,9 @@ export default {
         isMenuOn.value = false;
       }
     };
+    const modeChange = () => {
+      $('body').toggleClass('light');
+    }
     // 메인 이동
     const moveHome = () => {
       $(".menu").removeClass("active");
@@ -137,15 +178,20 @@ export default {
       });
     };
     const goTop = () => {
-        window.scroll({ top: 0 });
+      window.scroll({ top: 0 });
     };
 
     return {
       useRouter,
+      modeChange,
       navOn,
       isNavOn,
+      isBtnOn,
       menuOn,
       isMenuOn,
+      isSearchOn,
+      DeleteActive,
+      
       moveHome,
       moveCreate,
       goTop,
