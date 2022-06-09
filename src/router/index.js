@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import ListView from '@/components/ListView.vue';
 import CreatePost from '@/components/CreatePost.vue';
 import PostView from '@/components/PostView.vue';
-
 // vue 에서 화면을 연결하는 경우 활용
 const router = createRouter({
     history: createWebHistory(),

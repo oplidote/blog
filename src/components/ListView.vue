@@ -19,7 +19,8 @@
           </div>
           <div class="post-date">{{ postDate(item.date) }}</div>
           <div class="post-tit">
-            <h2>{{ item.title }}</h2>
+            <h2>{{ item.title }}
+            </h2>
           </div>
 
           <div v-html="markText(index + 1)" class="post-cont"></div>
@@ -107,10 +108,22 @@ export default {
       const text = require(`raw-loader!../posts/post${_index}.md`).default.replace(/</g, "&lt;").replace(/>/g,"&gt;").replace(/#/g,"");
       return text;
     };
+    // data.json 특정 테이블 출력
+    // console.log(PostsList.post.map((_c) => {
+    // var arr = {};
+    // arr[_c.id] = _c.category;
+    // return arr;
+    // }));
+    const cateList = ['html','css','js','vue','etc'];
     const cateSort = (_c) => {
+      if (cateList.indexOf(_c) == -1) _c = 'etc';
+      // 게시글의 카테고리와 사용자가 선택한 카테고리(props.cate)가 
+      // 일치하면 출력
       if (props.cate == _c) {
         return true;
-      } else if (props.cate == "") {
+      } 
+      // 사용자가 카테고리를 선택하지 않으면 모두 출력
+      else if (props.cate == "") {
         return true;
       }
     };
