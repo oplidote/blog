@@ -120,7 +120,7 @@
 <script>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import Snakke from './components/Snakke.vue';
+import Snakke from './components/SnakkeLib.vue';
 import $ from "jquery";
 
 export default {
