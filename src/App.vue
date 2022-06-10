@@ -1,4 +1,5 @@
 <template>
+
   <header class="header">
     <div class="container">
       <router-link :to="{ name: 'List' }" class="logo" @click="goTop()">
@@ -9,11 +10,20 @@
         <button class="mode" @click="modeChange"></button>
         <div class="search-form" :class="{ active: isSearchOn }">
           <button class="search" @mouseenter="isSearchOn = true"></button>
-          <input class="form-control" placeholder="준비 중입니다." @mouseleave="isSearchOn = false"/>
+          <input
+            class="form-control"
+            placeholder="준비 중입니다."
+            @mouseleave="isSearchOn = false"
+          />
         </div>
-        <button class="cate-btn" :class="{ active: isBtnOn }" @click="navOn"></button>
+        <button
+          class="cate-btn"
+          :class="{ active: isBtnOn }"
+          @click="navOn"
+        ></button>
       </div>
     </div>
+<Snakke />
 
     <!-- <router-link :to="{ name: 'Create' }" class="create-btn"></router-link> -->
     <nav class="nav" :class="{ active: isNavOn }">
@@ -110,11 +120,14 @@
 <script>
 import { ref, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import Snakke from './components/Snakke.vue';
 import $ from "jquery";
 
 export default {
   name: "App",
-  components: {},
+  components: {
+    Snakke,
+  },
   mounted() {
     document.addEventListener("scroll", this.headerScroll);
   },
@@ -144,6 +157,8 @@ export default {
     const isSearchOn = ref(false);
     // all button
     const navOn = () => {
+      const winY = window.scrollY;
+      console.log(winY);
       if (isNavOn.value == false) {
         isNavOn.value = true;
         isBtnOn.value = true;
@@ -152,7 +167,7 @@ export default {
         isBtnOn.value = false;
       }
       isSearchOn.value = false;
-    }
+    };
     const DeleteActive = () => {
       isNavOn.value = false;
       isSearchOn.value = false;
@@ -166,8 +181,8 @@ export default {
       }
     };
     const modeChange = () => {
-      $('body').toggleClass('light');
-    }
+      $("body").toggleClass("light");
+    };
     // 메인 이동
     const moveHome = () => {
       $(".menu").removeClass("active");
@@ -191,7 +206,7 @@ export default {
       isMenuOn,
       isSearchOn,
       DeleteActive,
-      
+
       moveHome,
       moveCreate,
       goTop,

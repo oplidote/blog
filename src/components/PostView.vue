@@ -1,5 +1,6 @@
 <template>
   <div class="container" id="post-view">
+
     <div class="post-wrap">
       <div class="post-control"></div>
       <div class="post-header">
@@ -48,6 +49,8 @@ import { marked } from "marked";
 import prism from "prismjs";
 
 export default {
+  components: {
+  },
   props: {
     id: Number,
   },

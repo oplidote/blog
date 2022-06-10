@@ -34,14 +34,14 @@
 import PostsList from "@/assets/data.json";
 import _ from "lodash";
 import { useRouter } from "vue-router";
-
 // markdown 파일을 위한 라이브러리
 import { marked } from "marked";
 import prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
 
 export default {
-  components: {},
+  components: {
+  },
   props: {
     cate: {
       type: String,

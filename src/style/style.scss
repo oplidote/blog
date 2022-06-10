@@ -32,7 +32,9 @@
         opacity: 1;
     }
 }
-
+::-webkit-scrollbar {
+    display: none;
+}
 // 변수
 $header-h:150px;
 
@@ -69,6 +71,7 @@ html {
 
 body {
     font-family: 'NanumSquare', 'Malgun Gothic', '맑은 고딕', "돋움", Verdana, sans-serif;
+
     line-height: 1.6;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -123,9 +126,11 @@ body {
         // background: #272822;
         tab-size: 4;
     }
+
     img {
         width: 100%;
     }
+
     ul,
     ol {
         position: relative;
@@ -154,7 +159,8 @@ body {
 
     h1,
     h2,
-    h3 {
+    h3,
+    h4 {
         color: #fff;
         margin: 5rem 0;
     }
@@ -277,24 +283,27 @@ body {
         right: 0;
         transform: translateY(-50%);
         font-size: 0;
+
         >* {
             margin-left: 30px;
         }
+
         .mode {
             position: relative;
             display: block;
             width: 25px;
             height: 25px;
-            background:url('../images/moon.png')no-repeat center;
+            background: url('../images/moon.png')no-repeat center;
             background-size: cover;
             cursor: pointer;
             border: 0;
             background-color: transparent;
         }
-        
+
         .search-form {
             position: relative;
             display: block;
+
             .search {
                 position: relative;
                 display: block;
@@ -965,7 +974,7 @@ body {
         .post-contents {
             border-top: 2px solid rgba(255, 255, 255, .05);
             border-bottom: 2px solid rgba(255, 255, 255, .05);
-            
+
             padding: 100px 0;
             margin: 0 20px;
 
@@ -982,6 +991,7 @@ body {
             justify-content: space-between;
             align-items: center;
             padding: 5% 5%;
+
             .post-author {
                 color: #999;
                 font-size: 1.3rem;
@@ -1027,9 +1037,11 @@ body {
     html {
         font-size: $html-fs;
     }
+
     li::before {
         top: calc(#{$html-fs} * 1.8) !important;
     }
+
     .header {
         .user-area {
             .search-form.active {
@@ -1043,9 +1055,11 @@ body {
 
 @media all and (max-width : 768px) {
     $html-fs: 8px;
+
     html {
         font-size: $html-fs;
     }
+
     li::before {
         top: calc(#{$html-fs} * 1.8) !important;
     }
@@ -1119,6 +1133,7 @@ body {
         .logo {
             left: 0;
             transform: translate(0, -50%);
+
             p {
                 display: none;
             }
@@ -1181,13 +1196,12 @@ body {
         }
 
         .user-area {
-            >* {
-                margin-left: 15px;
-            }
+
             .mode {
                 width: 23px;
                 height: 23px;
             }
+
             .search-form {
                 .search {
                     width: 23px;
@@ -1326,6 +1340,7 @@ body {
 
 @media all and (max-width : 360px) {
     $html-fs: 7px;
+
     html {
         font-size: $html-fs;
     }
@@ -1333,6 +1348,7 @@ body {
     li::before {
         top: calc(#{$html-fs} * 1.8) !important;
     }
+
     .header {
         .user-area {
             .search-form.active {
@@ -1343,40 +1359,69 @@ body {
         }
     }
 }
+
 // 라이트 모드
 body.light {
-    background-color:  #fff!important;
-    .author-info,.post-txt {
+    background-color: #fff !important;
+
+    .author-info,
+    .post-txt {
         color: #555 !important;
     }
-    .header,.scroll nav,.post-wrap,
+
+    .header,
+    .scroll nav,
+    .post-wrap,
     .post-box,
     .footer {
         background-color: #fff !important;
     }
-    &, .author-name,.logo,.post-tit,h1,h2,h3,.category:hover {
+
+    &,
+    .author-name,
+    .logo,
+    .post-tit,
+    h1,
+    h2,
+    h3,
+    h4,
+    .category:hover {
         color: #000 !important;
     }
+
+    blockquote {
+        border-left: 5px solid #a7a7fe !important
+    }
+
     .form-control {
         background-color: #88a !important;
         caret-color: #fff !important;
         color: #fff !important;
+
         &::placeholder {
             color: #fff !important;
         }
     }
-    .post-txt ul li::before, .post-txt ol li::before {
+
+    .post-txt ul li::before,
+    .post-txt ol li::before {
         background-color: #000 !important;
     }
-    .post-txt ul, .post-txt ol {
+
+    .post-txt ul,
+    .post-txt ol {
         border-radius: 30px;
         background-color: #f4f4f4;
-    }.post-txt blockquote {
+    }
+
+    .post-txt blockquote {
         background-color: #f4f4f4 !important;
     }
-    .post-txt p > code {
+
+    .post-txt p>code {
         background-color: #8888a9 !important;
     }
+
     .header {
         .nav {
             .gnb {
@@ -1385,28 +1430,34 @@ body.light {
                         background: url('../images/html-5-light.png') no-repeat center;
                         background-size: cover !important;
                     }
+
                     &#css span::before {
                         background: url('../images/css-3-light.png') no-repeat center;
                         background-size: cover !important;
                     }
+
                     &#js span::before {
                         background: url('../images/js-light.png') no-repeat center;
                         background-size: cover !important;
                     }
+
                     &#vue span::before {
                         background: url('../images/vue-light.png') no-repeat center;
                         background-size: cover !important;
                     }
+
                     &#etc span::before {
                         background: url('../images/dots-light.png') no-repeat center;
                         background-size: cover !important;
                     }
+
                     &.router-link-active#etc span::before {
                         background: url('../images/dots.png') no-repeat center;
                         background-size: cover !important;
                     }
+
                     &.router-link-active:hover {
-                        .category{
+                        .category {
                             color: #fff !important;
                         }
                     }
@@ -1414,56 +1465,68 @@ body.light {
             }
         }
     }
+
     .logo {
         &::before {
-            background:url('../assets/logo-light.png') no-repeat center !important;
+            background: url('../assets/logo-light.png') no-repeat center !important;
             background-size: cover !important;
         }
+
         p {
             color: #aaa;
         }
     }
+
     .search {
         background: url('../images/search-light.png')no-repeat center !important;
         background-size: cover !important;
     }
+
     .mode {
         background: url('../images/sun.png') no-repeat center !important;
         background-size: cover !important;
     }
+
     .cate-btn {
-        background:url('../images/back-light.png') no-repeat center !important;
+        background: url('../images/back-light.png') no-repeat center !important;
         background-size: cover !important;
     }
-    .post-box,.footer {
+
+    .post-box,
+    .footer {
         border-top: 1px solid #333 !important;
         border-radius: 0 !important;
     }
+
     .post-cate span {
         color: #fff;
         background-color: #8888aa;
     }
+
     .post-contents {
         border-color: rgba(0, 0, 0, .25) !important;
     }
-    
+
     .footer {
         #github {
-            background:url('../images/github-light.png')no-repeat center !important;
+            background: url('../images/github-light.png')no-repeat center !important;
             background-size: cover !important;
         }
+
         #instagram {
-            background:url('../images/instagram-light.png')no-repeat center !important;
+            background: url('../images/instagram-light.png')no-repeat center !important;
             background-size: cover !important;
         }
+
         #kakaotalk {
-            background:url('../images/kakao-light.png')no-repeat center !important;
+            background: url('../images/kakao-light.png')no-repeat center !important;
             background-size: cover !important;
         }
+
         #mail {
-            background:url('../images/mail-light.png')no-repeat center !important;
+            background: url('../images/mail-light.png')no-repeat center !important;
             background-size: cover !important;
         }
     }
-    
+
 }
