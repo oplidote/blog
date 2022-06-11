@@ -142,12 +142,12 @@ body {
             position: relative;
             display: block;
             font-size: 0.9em;
-
+            padding-left: 5%;
             &::before {
                 content: '';
                 position: absolute;
                 top: calc(#{$html-fs} * 1.8);
-                left: -10px;
+                left: 0;
                 display: block;
                 width: 4px;
                 height: 4px;
@@ -156,7 +156,10 @@ body {
             }
         }
     }
-
+    del {
+        color: #999;
+        font-size: .85em;
+    }
     h1,
     h2,
     h3,
