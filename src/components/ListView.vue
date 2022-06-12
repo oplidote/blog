@@ -49,7 +49,6 @@ export default {
       default: "",
     },
   },
-  async created() {},
   computed: {
     posts() {
       return PostsList.post.map((items) => {
