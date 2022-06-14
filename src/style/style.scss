@@ -18,7 +18,22 @@
     }
 
 }
-
+@keyframes Rain {
+    0% {
+        background-position-y: 0%;
+    }
+    100% {
+        background-position-y:  768px;
+    }
+}
+@keyframes clouds {
+    0% {
+        background-position-x: 0%;
+    }
+    100% {
+        background-position-x:  2000px;
+    }
+}
 @keyframes opa {
     0% {
         opacity: 0;
@@ -98,7 +113,6 @@ body {
 .container {
     position: relative;
     display: block;
-    margin: 50px auto;
     padding: 5% 15%;
 }
 
@@ -831,8 +845,27 @@ body {
         }
     }
 }
+.theme {
+    position: fixed;
+    display: block;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.Rain .theme {
+    background: url('../images/rain.png') repeat;
+    opacity: .4;
+    animation: Rain .3s cubic-bezier(0,0,1,1) infinite;
+}
+.Clouds .theme {
+    opacity: .1;
+    background: url('../images/cloud.png') repeat;
+    animation: clouds 40s cubic-bezier(0,0,1,1) infinite;
+}
 
 .contents {
+    padding: 50px 0;
+
     min-height: calc(100vh - 120px + #{$header-h});
 }
 
@@ -868,7 +901,7 @@ body {
             .post-box {
                 position: relative;
                 display: block;
-                background-color: #181818;
+                background-color: rgba(24,24,24,.5);
                 border-radius: 20px;
                 margin-top: 40px;
                 padding: 40px;
@@ -892,6 +925,9 @@ body {
                 color: #fff;
                 margin-top: 20px;
                 margin-bottom: 25px;
+                span {
+                    word-break: keep-all;
+                }
             }
 
             .post-date {
@@ -949,6 +985,9 @@ body {
                 font-size: 3.8rem;
                 color: #fff;
                 margin-bottom: 30px;
+                span {
+                    word-break: keep-all;
+                }
             }
 
             .back {
@@ -1366,7 +1405,12 @@ body {
 // 라이트 모드
 body.light {
     background-color: #fff !important;
-
+    &.Rain .theme {
+    }
+    &.Clouds .theme {
+        background: url('../images/cloud_dark.png') repeat;
+        opacity: .15;
+    }
     .author-info,
     .post-txt {
         color: #555 !important;
@@ -1375,11 +1419,12 @@ body.light {
     .header,
     .scroll nav,
     .post-wrap,
-    .post-box,
     .footer {
         background-color: #fff !important;
     }
-
+    .post-box {
+        background-color: rgba(255, 255, 255, .5) !important;
+    }
     &,
     .author-name,
     .logo,

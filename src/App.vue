@@ -1,5 +1,5 @@
 <template>
-
+  <div class="theme"></div>
   <header class="header">
     <div class="container">
       <router-link :to="{ name: 'List' }" class="logo" @click="goTop()">
@@ -149,6 +149,26 @@ export default {
         name: "List",
       });
     });
+    // 날씨 
+    let key = "89387cb975ca5ede5877cd62d36ec15c";
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=daegu&appid=${key}&units=metric`;
+    fetch(url)
+    .then((res) => {
+      if (res.status === 200) {
+              return res.json();
+            } else {
+              console.error(`HTTP error! status: ${res.status}`);
+              alert(
+                "검색에 실패했습니다.조회가 되지 않을 시 지역명을 영문으로 재검색해보세요."
+              );
+            }
+    })
+    .then((jsonData) => {
+      document.body.classList.add(jsonData.weather[0].main);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     const router = useRouter();
     // 변수
     const isMenuOn = ref(false);

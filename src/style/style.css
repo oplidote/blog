@@ -28,6 +28,42 @@
   }
 }
 
+@-webkit-keyframes Rain {
+  0% {
+    background-position-y: 0%;
+  }
+  100% {
+    background-position-y: 768px;
+  }
+}
+
+@keyframes Rain {
+  0% {
+    background-position-y: 0%;
+  }
+  100% {
+    background-position-y: 768px;
+  }
+}
+
+@-webkit-keyframes clouds {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 2000px;
+  }
+}
+
+@keyframes clouds {
+  0% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: 2000px;
+  }
+}
+
 @-webkit-keyframes opa {
   0% {
     opacity: 0;
@@ -50,6 +86,10 @@
   100% {
     opacity: 1;
   }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 * {
@@ -77,6 +117,7 @@ li {
 html {
   font-size: 10px;
   overflow-x: hidden;
+  background-color: #202025;
 }
 
 body {
@@ -91,8 +132,8 @@ body {
   letter-spacing: -0.5;
   color: #ddd;
   background-color: #202025;
-  -webkit-transition: .3s;
-  transition: .3s;
+  -webkit-transition: background-color .3s;
+  transition: background-color .3s;
 }
 
 /* 공통요소 */
@@ -107,7 +148,6 @@ body {
 .container {
   position: relative;
   display: block;
-  margin: 50px auto;
   padding: 5% 15%;
 }
 
@@ -135,11 +175,16 @@ body {
   tab-size: 4;
 }
 
+.post-txt img {
+  width: 100%;
+}
+
 .post-txt ul,
 .post-txt ol {
   position: relative;
   display: block;
-  padding: 5%;
+  padding: 5% 5%;
+  margin: 2% 0;
 }
 
 .post-txt ul li,
@@ -147,14 +192,15 @@ body {
   position: relative;
   display: block;
   font-size: 0.9em;
+  padding-left: 5%;
 }
 
 .post-txt ul li::before,
 .post-txt ol li::before {
   content: '';
   position: absolute;
-  top: 18px;
-  left: -10px;
+  top: calc(10px * 1.8);
+  left: 0;
   display: block;
   width: 4px;
   height: 4px;
@@ -162,9 +208,15 @@ body {
   background-color: #fff;
 }
 
+.post-txt del {
+  color: #999;
+  font-size: .85em;
+}
+
 .post-txt h1,
 .post-txt h2,
-.post-txt h3 {
+.post-txt h3,
+.post-txt h4 {
   color: #fff;
   margin: 5rem 0;
 }
@@ -246,7 +298,7 @@ body {
   position: absolute;
   display: block;
   left: 50%;
-  top: 40%;
+  top: 50%;
   padding-left: 32px;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
@@ -282,6 +334,7 @@ body {
   font-size: 1.2rem;
   font-weight: normal;
   white-space: nowrap;
+  color: #999;
   -webkit-transition: .3s .3s;
   transition: .3s .3s;
 }
@@ -309,6 +362,7 @@ body {
   height: 25px;
   background: url("../images/moon.png") no-repeat center;
   background-size: cover;
+  cursor: pointer;
   border: 0;
   background-color: transparent;
 }
@@ -334,7 +388,7 @@ body {
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: #333344;
   border: 0;
   caret-color: #aab;
@@ -342,7 +396,7 @@ body {
   width: 0;
   font-size: 1.5rem;
   padding: 0 15px;
-  right: -2px;
+  right: -5px;
   visibility: hidden;
   opacity: 0;
   height: 35px;
@@ -449,7 +503,7 @@ body {
 .header .nav .gnb .menu.router-link-active span {
   opacity: 1;
   background-color: #333;
-  border-radius: 20px;
+  border-radius: 25px;
 }
 
 .header .nav .gnb .menu.router-link-active span::before {
@@ -457,23 +511,23 @@ body {
 }
 
 .header .nav .gnb .menu.router-link-active#html span::before {
-  background: url("../images/html-5_color.png");
-  background-size: cover;
+  background: url("../images/html-5_color.png") !important;
+  background-size: cover !important;
 }
 
 .header .nav .gnb .menu.router-link-active#css span::before {
-  background: url("../images/css-3_color.png");
-  background-size: cover;
+  background: url("../images/css-3_color.png") !important;
+  background-size: cover !important;
 }
 
 .header .nav .gnb .menu.router-link-active#js span::before {
-  background: url("../images/js_color.png");
-  background-size: cover;
+  background: url("../images/js_color.png") !important;
+  background-size: cover !important;
 }
 
 .header .nav .gnb .menu.router-link-active#vue span::before {
-  background: url("../images/vue_color.png");
-  background-size: cover;
+  background: url("../images/vue_color.png") !important;
+  background-size: cover !important;
 }
 
 .header .nav .gnb .menu span::before {
@@ -510,7 +564,6 @@ body {
 }
 
 .header.scroll .logo {
-  top: 50%;
   left: 0;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
@@ -842,7 +895,30 @@ body {
   opacity: .5;
 }
 
+.theme {
+  position: fixed;
+  display: block;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.Rain .theme {
+  background: url("../images/rain.png") repeat;
+  opacity: .4;
+  -webkit-animation: Rain 0.3s cubic-bezier(0, 0, 1, 1) infinite;
+          animation: Rain 0.3s cubic-bezier(0, 0, 1, 1) infinite;
+}
+
+.Clouds .theme {
+  opacity: .1;
+  background: url("../images/cloud.png") repeat;
+  -webkit-animation: clouds 40s cubic-bezier(0, 0, 1, 1) infinite;
+          animation: clouds 40s cubic-bezier(0, 0, 1, 1) infinite;
+}
+
 .contents {
+  padding: 50px 0;
   min-height: calc(100vh - 120px + 150px);
 }
 
@@ -889,10 +965,12 @@ body {
 #list-view .list-wrap .post .post-box {
   position: relative;
   display: block;
-  background-color: #181818;
+  background-color: rgba(24, 24, 24, 0.5);
   border-radius: 20px;
   margin-top: 40px;
   padding: 40px;
+  -webkit-transition: .3s;
+  transition: .3s;
 }
 
 #list-view .list-wrap .post .click-area {
@@ -912,6 +990,10 @@ body {
   color: #fff;
   margin-top: 20px;
   margin-bottom: 25px;
+}
+
+#list-view .list-wrap .post .post-tit span {
+  word-break: keep-all;
 }
 
 #list-view .list-wrap .post .post-date {
@@ -963,6 +1045,10 @@ body {
   margin-bottom: 30px;
 }
 
+#post-view .post-wrap .post-header .post-tit span {
+  word-break: keep-all;
+}
+
 #post-view .post-wrap .post-header .back {
   position: absolute;
   top: 50%;
@@ -987,8 +1073,8 @@ body {
 }
 
 #post-view .post-wrap .post-contents {
-  border-top: 2px solid rgba(255, 255, 255, 0.25);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  border-top: 2px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.05);
   padding: 100px 0;
   margin: 0 20px;
 }
@@ -1036,6 +1122,9 @@ body {
   html {
     font-size: 9px;
   }
+  li::before {
+    top: calc(9px * 1.8) !important;
+  }
   .header .user-area .search-form.active .form-control {
     width: 150px;
   }
@@ -1044,6 +1133,9 @@ body {
 @media all and (max-width: 768px) {
   html {
     font-size: 8px;
+  }
+  li::before {
+    top: calc(8px * 1.8) !important;
   }
   #app {
     padding-top: 130px;
@@ -1088,10 +1180,12 @@ body {
     margin: 0 10%;
   }
   .header .logo {
-    top: 40%;
     left: 0;
     -webkit-transform: translate(0, -50%);
             transform: translate(0, -50%);
+  }
+  .header .logo p {
+    display: none;
   }
   .header .nav {
     padding-left: 10%;
@@ -1129,9 +1223,6 @@ body {
     left: 9px;
     width: 18px;
     height: 18px;
-  }
-  .header .user-area > * {
-    margin-left: 15px;
   }
   .header .user-area .mode {
     width: 23px;
@@ -1175,26 +1266,26 @@ body {
     width: 20px;
     height: 20px;
     background: url("../images/all.png") no-repeat center;
-    background-size: cover;
+    background-size: cover !important;
   }
   #list-view .list-header h2.html::before {
     background: url("../images/html-5_color.png") no-repeat center;
-    background-size: cover;
+    background-size: cover !important;
   }
   #list-view .list-header h2.css::before {
     background: url("../images/css-3_color.png") no-repeat center;
-    background-size: cover;
+    background-size: cover !important;
   }
   #list-view .list-header h2.js::before {
     background: url("../images/js_color.png") no-repeat center;
-    background-size: cover;
+    background-size: cover !important;
   }
   #list-view .list-header h2.vue::before {
     background: url("../images/vue_color.png") no-repeat center;
     background-size: cover;
   }
   #list-view .list-header h2.etc::before {
-    background: url("../images/dots_on.png") no-repeat center;
+    background: url("../images/dots.png") no-repeat center;
     background-size: cover;
   }
   #list-view .list-wrap .post .post-box {
@@ -1235,6 +1326,9 @@ body {
   html {
     font-size: 7px;
   }
+  li::before {
+    top: calc(7px * 1.8) !important;
+  }
   .header .user-area .search-form.active .form-control {
     width: 120px !important;
   }
@@ -1242,22 +1336,127 @@ body {
 
 body.light {
   background-color: #fff !important;
-  color: #000;
 }
 
-body.light .header, body.light .scroll nav,
-body.light .post-box,
+body.light.Clouds .theme {
+  background: url("../images/cloud_dark.png") repeat;
+  opacity: .15;
+}
+
+body.light .author-info,
+body.light .post-txt {
+  color: #555 !important;
+}
+
+body.light .header,
+body.light .scroll nav,
+body.light .post-wrap,
 body.light .footer {
   background-color: #fff !important;
 }
 
-body.light .logo {
+body.light .post-box {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+body.light,
+body.light .author-name,
+body.light .logo,
+body.light .post-tit,
+body.light h1,
+body.light h2,
+body.light h3,
+body.light h4,
+body.light .category:hover {
   color: #000 !important;
+}
+
+body.light blockquote {
+  border-left: 5px solid #a7a7fe !important;
+}
+
+body.light .form-control {
+  background-color: #88a !important;
+  caret-color: #fff !important;
+  color: #fff !important;
+}
+
+body.light .form-control::-webkit-input-placeholder {
+  color: #fff !important;
+}
+
+body.light .form-control:-ms-input-placeholder {
+  color: #fff !important;
+}
+
+body.light .form-control::-ms-input-placeholder {
+  color: #fff !important;
+}
+
+body.light .form-control::placeholder {
+  color: #fff !important;
+}
+
+body.light .post-txt ul li::before,
+body.light .post-txt ol li::before {
+  background-color: #000 !important;
+}
+
+body.light .post-txt ul,
+body.light .post-txt ol {
+  border-radius: 30px;
+  background-color: #f4f4f4;
+}
+
+body.light .post-txt blockquote {
+  background-color: #f4f4f4 !important;
+}
+
+body.light .post-txt p > code {
+  background-color: #8888a9 !important;
+}
+
+body.light .header .nav .gnb .menu#html span::before {
+  background: url("../images/html-5-light.png") no-repeat center;
+  background-size: cover !important;
+}
+
+body.light .header .nav .gnb .menu#css span::before {
+  background: url("../images/css-3-light.png") no-repeat center;
+  background-size: cover !important;
+}
+
+body.light .header .nav .gnb .menu#js span::before {
+  background: url("../images/js-light.png") no-repeat center;
+  background-size: cover !important;
+}
+
+body.light .header .nav .gnb .menu#vue span::before {
+  background: url("../images/vue-light.png") no-repeat center;
+  background-size: cover !important;
+}
+
+body.light .header .nav .gnb .menu#etc span::before {
+  background: url("../images/dots-light.png") no-repeat center;
+  background-size: cover !important;
+}
+
+body.light .header .nav .gnb .menu.router-link-active#etc span::before {
+  background: url("../images/dots.png") no-repeat center;
+  background-size: cover !important;
+}
+
+body.light .header .nav .gnb .menu.router-link-active:hover .category {
+  color: #fff !important;
 }
 
 body.light .logo::before {
   background: url("../assets/logo-light.png") no-repeat center !important;
   background-size: cover !important;
+}
+
+body.light .logo p {
+  color: #aaa;
 }
 
 body.light .search {
@@ -1275,7 +1474,8 @@ body.light .cate-btn {
   background-size: cover !important;
 }
 
-body.light .post-box {
+body.light .post-box,
+body.light .footer {
   border-top: 1px solid #333 !important;
   border-radius: 0 !important;
 }
@@ -1285,11 +1485,27 @@ body.light .post-cate span {
   background-color: #8888aa;
 }
 
-body.light .post-tit {
-  color: #000 !important;
+body.light .post-contents {
+  border-color: rgba(0, 0, 0, 0.25) !important;
 }
 
-body.light .footer {
-  border-top: 1px solid #333;
+body.light .footer #github {
+  background: url("../images/github-light.png") no-repeat center !important;
+  background-size: cover !important;
+}
+
+body.light .footer #instagram {
+  background: url("../images/instagram-light.png") no-repeat center !important;
+  background-size: cover !important;
+}
+
+body.light .footer #kakaotalk {
+  background: url("../images/kakao-light.png") no-repeat center !important;
+  background-size: cover !important;
+}
+
+body.light .footer #mail {
+  background: url("../images/mail-light.png") no-repeat center !important;
+  background-size: cover !important;
 }
 /*# sourceMappingURL=style.css.map */
