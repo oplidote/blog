@@ -151,7 +151,7 @@ export default {
     });
     // 날씨 
     let key = "89387cb975ca5ede5877cd62d36ec15c";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=daegu&appid=${key}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=${key}&units=metric`;
     fetch(url)
     .then((res) => {
       if (res.status === 200) {
