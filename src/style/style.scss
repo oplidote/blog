@@ -18,22 +18,7 @@
     }
 
 }
-@keyframes Rain {
-    0% {
-        background-position-y: 0%;
-    }
-    100% {
-        background-position-y:  768px;
-    }
-}
-@keyframes clouds {
-    0% {
-        background-position-x: 0%;
-    }
-    100% {
-        background-position-x:  2000px;
-    }
-}
+
 @keyframes opa {
     0% {
         opacity: 0;
@@ -845,23 +830,6 @@ body {
         }
     }
 }
-.theme {
-    position: fixed;
-    display: block;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-}
-.Rain .theme {
-    background: url('../images/rain.png') repeat;
-    opacity: .4;
-    animation: Rain .3s cubic-bezier(0,0,1,1) infinite;
-}
-.Clouds .theme {
-    opacity: .1;
-    background: url('../images/cloud.png') repeat;
-    animation: clouds 40s cubic-bezier(0,0,1,1) infinite;
-}
 
 .contents {
     padding: 50px 0;
@@ -1405,12 +1373,6 @@ body {
 // 라이트 모드
 body.light {
     background-color: #fff !important;
-    &.Rain .theme {
-    }
-    &.Clouds .theme {
-        background: url('../images/cloud_dark.png') repeat;
-        opacity: .15;
-    }
     .author-info,
     .post-txt {
         color: #555 !important;
