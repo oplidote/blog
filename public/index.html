@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>oplinote</title>
-    <link rel="stylesheet" href="/src/style/style.css">
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app">
 
-    </div>
-    <!-- built files will be auto injected -->
-  </body>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title>oplinote</title>
+
+  <!-- 사이트 요약 -->
+  <meta name="description" content="프론트엔드 개발자 진현우의 기술 블로그입니다">
+  <!-- 키워드 -->
+  <meta name="keyword"
+    content="프론트엔드, 개발, 개발자, 웹 개발, 블로그, 개발블로그, 기술블로그, html, javascript, js, css, vue, scss, react, api">
+  <!-- 크롤링 봇 색인 -->
+  <meta name="robots" content="index,follow">
+  <!-- 소셜 미디어 open graph 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="oplinote">
+  <meta property="og:description" content="프론트엔드 개발자 진현우의 블로그입니다">
+  <meta property="og:image" content="<%= BASE_URL %>thumbnail.png">
+  <meta property="og:url" content="https://oplidote.github.io/oplinote">
+
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:title" content="oplinote">
+  <meta property="twitter:description" content="프론트엔드 개발자 진현우의 블로그입니다">
+  <meta property="twitter:image" content="<%= BASE_URL %>thumbnail.png">
+
+  <link rel="stylesheet" href="/src/style/style.css">
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app">
+
+  </div>
+  <!-- built files will be auto injected -->
+</body>
+
 </html>
