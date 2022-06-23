@@ -105,7 +105,7 @@ export default {
       return diffYear + "년 전";
     };
     const markText = (_index) => {
-      const text = require(`raw-loader!../posts/post${_index}.md`).default.replace(/</g, "&lt;").replace(/>/g,"&gt;").replace(/#|_/g,"");
+      const text = require(`raw-loader!../posts/post${_index}.md`).default.replace(/</g, "&lt;").replace(/>/g,"&gt;").replace(/#|_|`/g,"");
       return text;
     };
     // data.json 특정 테이블 출력
