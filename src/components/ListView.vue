@@ -8,19 +8,14 @@
     </div>
     <div class="list-wrap">
       <div class="post" v-for="(item, index) in posts" :key="item.id">
-        <div
-          class="post-box"
-          v-show="cateSort(item.category)">
-        <div class="click-area"
-          @click="movePost(item.id,cate)"
-        ></div>
+        <div class="post-box" v-show="cateSort(item.category)">
+          <div class="click-area" @click="movePost(item.id, cate)"></div>
           <div class="post-cate" v-if="cate == '' ? true : false">
             <span>{{ listTitle(item.category) }}</span>
           </div>
           <div class="post-date">{{ postDate(item.date) }}</div>
           <div class="post-tit">
-            <h2>{{ item.title }}
-            </h2>
+            <h2>{{ item.title }}</h2>
           </div>
 
           <div v-html="markText(index + 1)" class="post-cont"></div>
@@ -41,8 +36,7 @@ import prism from "prismjs";
 import "prismjs/themes/prism-okaidia.css";
 
 export default {
-  components: {
-  },
+  components: {},
   props: {
     cate: {
       type: String,
@@ -61,12 +55,13 @@ export default {
       this.input = e.target.value;
     }, 300),
   },
+
   setup(props) {
     const router = useRouter();
     // marked.js 옵션
     marked.setOptions({
       gfm: true,
-      breaks: false,  // 줄바꿈 한번을 <br> 로 취급할 지
+      breaks: false, // 줄바꿈 한번을 <br> 로 취급할 지
     });
     const postDate = (_createDate) => {
       let date1 = new Date(); // 현재 일자
@@ -105,7 +100,10 @@ export default {
       return diffYear + "년 전";
     };
     const markText = (_index) => {
-      const text = require(`raw-loader!../posts/post${_index}.md`).default.replace(/</g, "&lt;").replace(/>/g,"&gt;").replace(/#|_|`/g,"");
+      const text = require(`raw-loader!../posts/post${_index}.md`)
+        .default.replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/#|_|`/g, "");
       return text;
     };
     // data.json 특정 테이블 출력
@@ -114,14 +112,14 @@ export default {
     // arr[_c.id] = _c.category;
     // return arr;
     // }));
-    const cateList = ['html','css','js','vue','etc'];
+    const cateList = ["html", "css", "js", "vue", "etc"];
     const cateSort = (_c) => {
-      if (cateList.indexOf(_c) == -1) _c = 'etc';
-      // 게시글의 카테고리와 사용자가 선택한 카테고리(props.cate)가 
+      if (cateList.indexOf(_c) == -1) _c = "etc";
+      // 게시글의 카테고리와 사용자가 선택한 카테고리(props.cate)가
       // 일치하면 출력
       if (props.cate == _c) {
         return true;
-      } 
+      }
       // 사용자가 카테고리를 선택하지 않으면 모두 출력
       else if (props.cate == "") {
         return true;
@@ -157,7 +155,7 @@ export default {
       }
       return count;
     };
-    const movePost = (_id,_c) => {
+    const movePost = (_id, _c) => {
       router.push({
         name: "Post",
         params: {
